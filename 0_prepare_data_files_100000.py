@@ -1,7 +1,9 @@
+# Формируем файлы Ph_pos.npy, Ph_for.npy, Ph_energy.npy
+# которые в дальнейшем будем использовать для формирования датасета
+
 import os
 import numpy as np
 import time
-
 # В папке out_cp есть файлы Ph.pos и Ph.for.
 # Формат этих файлов одинаковый: в одном хранятся позиции для всех 16 атомов,
 # в другом - силы, дествующие на каждый атом:
@@ -49,9 +51,6 @@ def prepare_file_3(fname_in, fname_in_npy):
 
 prepare_file_3(r'./out_cp/Ph.pos', r'./out_cp/Ph_pos.npy')
 prepare_file_3(r'./out_cp/Ph.for', r'./out_cp/Ph_for.npy')
-
-# Формируем файлы _ener.npy, _coords.npy, _forces.npy,
-# которые в дальнейшем будем использовать для формирования датасета
 
 # файл out_cp/Ph.evp имеет следующий формат:
 # nfi     time(ps)      ekinc         Tcell(K)      Tion(K)            etot                enthal
