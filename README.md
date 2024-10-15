@@ -26,5 +26,8 @@ https://schnetpack.readthedocs.io/
 3) Файл 1_prepare_database_100000.py с использованием данных из файлов Ph_pos.npy, Ph_for.npy, Ph_energy.npy
    базу данных dataset_100000_pbc.db, которая сохраняется в папке /forcetut.
    
-4) 
+4) Файл 1_start_learning_dataset_100000.py запускает обучение нейронной сети на данных,
+хранящихся в датасете dataset_100000_pbc.db, в результате формируется модель phosphorene_model_256_9_500_100000_pbc_gpu
+
+6) 
 
