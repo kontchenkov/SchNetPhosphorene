@@ -1,0 +1,21 @@
+Added files - results of modeling the structure of black phosphorene using the Car-Parrinello quantum molecular dynamics.
+Files are too big for GitHub, so they are placed in Yandex disc https://disk.yandex.ru/d/K0_Y7QBL7jdHxg
+(you should copy files from directory /out_cp here).
+
+There should be files in this directory:
+
+Ph.cel
+Ph.con
+Ph.eig
+Ph.evp
+Ph.for
+Ph.hrs
+Ph.nsg
+Ph.nos
+Ph.pol
+Ph.pos
+Ph.spr
+Ph.str
+Ph.the
+Ph.vel
+Ph.wfc
