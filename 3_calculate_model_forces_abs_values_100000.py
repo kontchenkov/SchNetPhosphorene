@@ -87,5 +87,5 @@ for i in range(num_test):
         temp[i][j] = LA.norm(results[j])
 print("--- Done %s seconds ---\n" % (time.time() - start_time))
 lst_model_data_all_by_atoms=temp.transpose()
-with open('lst_model_data_all_by_atoms_100000_1000.npy', 'wb') as f:
+with open('lst_model_data_all_by_atoms_100000.npy', 'wb') as f:
     np.save(f, lst_model_data_all_by_atoms)
