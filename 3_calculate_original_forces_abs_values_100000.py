@@ -33,7 +33,7 @@ print(f_data[0])
 num_train = 80000
 num_val=15000
 num_test=5000
-lst_initial_data_all_by_atoms = get_abs_force_value_by_atoms(f_data[num_train+num_val:])
-print(lst_initial_data_all_by_atoms)
-with open('lst_initial_data_all_by_atoms.npy', 'wb') as f:
+lst_original_data_all_by_atoms = get_abs_force_value_by_atoms(f_data[num_train+num_val:])
+print(lst_original_data_all_by_atoms)
+with open('lst_original_data_all_by_atoms_100000.npy', 'wb') as f:
     np.save(f, lst_initial_data_all_by_atoms)
