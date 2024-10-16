@@ -24,7 +24,7 @@ cutoff = 5.0      # радиус обрезки
 batch_size = 1000 # размер батча
 
 dataset_file_path = 'dataset_100000_pbc.db'
-model_file_path = 'phosphorene_model_256_9_500_100000_pbc_gpu'
+model_file_path = 'phosphorene_model_256_9_1000_100000_pbc_gpu'
 
 # формируем файл split.npz, в котором храним 3 файла:
 # индексы элементов основной обучающей выборки (train_idx.npy)
@@ -150,7 +150,7 @@ trainer = pl.Trainer(
     callbacks=callbacks,
     logger=logger,
     default_root_dir='./forcetut',
-    max_epochs=500,
+    max_epochs=1000,
 )
 print("Finish train", flush = True)
 trainer.fit(task, datamodule=phosphorene_data)
