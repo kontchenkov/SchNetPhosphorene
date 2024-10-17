@@ -2,8 +2,6 @@ lst_model_data_all_by_atoms_100000.npy
 lst_model_data_all_by_atoms_2000.npy
 lst_original_data_all_by_atoms_100000.npy
 
-#out_cp/
-
 out_cp/Ph.cel
 out_cp/Ph.con
 out_cp/Ph.eig
@@ -24,3 +22,6 @@ out_cp/Ph_pos.npy
 out_cp/Ph_for.npy
 
 forcetut/dataset_100000_pbc.db
+
+split.npz
+splitting.lock
