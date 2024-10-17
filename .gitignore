@@ -22,3 +22,5 @@ out_cp/Ph.wfc
 out_cp/Ph_energy.npy
 out_cp/Ph_pos.npy
 out_cp/Ph_for.npy
+
+forcetut/dataset_100000_pbc.db
