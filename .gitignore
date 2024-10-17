@@ -25,3 +25,5 @@ forcetut/dataset_100000_pbc.db
 
 split.npz
 splitting.lock
+
+.png
