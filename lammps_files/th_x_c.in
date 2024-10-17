@@ -1,0 +1,46 @@
+log		data_x.out
+units		metal
+newton off
+atom_style	atomic
+dimension	3
+boundary	p p p
+
+variable	dt equal 0.001
+variable	T equal 273.0
+
+read_restart	eq1_x.equil
+mass		1 30.973762
+group		Ph type 1
+
+pair_style	schnetpack
+pair_coeff	* * phosphorene_model 16
+
+neighbor	1.0 bin
+neigh_modify	every 1 delay 0 check yes
+
+timestep	${dt}
+
+variable	board equal "lx"
+print		"lx = ${board}"
+region		hot block 0.0 10.0 INF INF INF INF
+region		cold block 101.25927389915 111.25927389915 INF INF INF INF
+compute		Thot all temp/region hot
+compute		Tcold all temp/region cold
+
+dump		xtrj all atom 10000 x10.lammpstrj
+fix		1 all nvt temp $T $T 0.2
+thermo		100
+run		100000
+
+velocity	all scale $T
+
+unfix		1
+# 2nd equilibration run
+
+fix		1 all nve
+fix		hot all heat 1 1.0 region hot
+fix		cold all heat 1 -1.0 region cold
+
+thermo_style	custom step temp c_Thot c_Tcold etotal
+restart		50000 res_x.%.1 res_x.%.2 nfile 4
+run		500000

@@ -1,0 +1,91 @@
+units		metal
+atom_style	atomic
+newton          off
+dimension	3
+boundary	p p p
+dump mydmp all custom 10 dump.lammpstrj id type x y z
+
+variable	s equal 8.86 # lenght of 1st axis in Angstrom
+variable	dt equal 0.001
+#variable	T equal 273.0
+
+
+lattice custom $s &
+  a1 0.993809735   0.0   0.0 &
+  a2 0.0   0.742697495   0.0 &
+  a3 0.0   0.0  2.4627 &
+  basis 0.000544373   0.005003141   0.597982055 &
+  basis 0.169455377   0.254997513   0.597982247 &
+  basis 0.250546837   0.254996807   0.500618432 &
+  basis 0.419457855   0.005003697   0.500618151 &
+  basis 0.500546580   0.005003795   0.597981958 &
+  basis 0.669457969   0.254997427   0.597981699 &
+  basis 0.750540922   0.254996953   0.500617635 &
+  basis 0.919451146   0.005003234   0.500618257 &
+  basis 0.000549159   0.504996907   0.597981582 &
+  basis 0.169449130   0.755002815   0.597981269 &
+  basis 0.250553865   0.755002785   0.500618587 &
+  basis 0.419452247   0.504996247   0.500618310 &
+  basis 0.500551502   0.504996002   0.597981222 &
+  basis 0.669450387   0.755002669   0.597981462 &
+  basis 0.750546943   0.755002976   0.500618517 &
+  basis 0.919445709   0.504997032   0.500618616
+
+#region name_of_region, type, xmin, xmax, ymin, ymax, zmin, zmax
+region		mybox block 0 23 0 16 0 1 units lattice # how many of lattice cells can fit
+
+create_box	1 mybox
+
+create_atoms	1 box &
+  basis 1 1 &
+  basis 2 1 &
+  basis 3 1 &
+  basis 4 1 &
+  basis 5 1 &
+  basis 6 1 &
+  basis 7 1 &
+  basis 8 1 &
+  basis 9 1 &
+  basis 10 1 &
+  basis 11 1 &
+  basis 12 1 &
+  basis 13 1 &
+  basis 14 1 &
+  basis 15 1 &
+  basis 16 1
+  
+mass		1 30.973762
+group		Ph type 1
+  
+pair_style	schnetpack
+pair_coeff	* * phosphorene_model 16
+
+neighbor	1.0 bin
+neigh_modify	every 1 delay 0 check yes
+
+minimize        1e-25 1e-25 5000 10000
+
+timestep	${dt}
+thermo		250
+velocity        all create 1.0 1 mom no rot no dist gaussian
+
+print		"NVE run 0-20 K"
+fix		1 all nve
+fix 		2 all temp/berendsen 1.0 20.0 0.001
+run 10000
+unfix 1
+unfix 2
+
+print		"NVE run 20-273 K"
+fix             3 all nve
+fix             4 all temp/berendsen 20.0 273.0 0.1
+run 10000
+unfix 3
+unfix 4
+
+print		"NVT run 273 K"
+fix 1 all nvt temp 273.0 273.0 0.1
+run 1000
+unfix		1
+
+write_restart	eq1_x.equil
